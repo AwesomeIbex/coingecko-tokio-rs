@@ -1,8 +1,9 @@
 use coingecko::{Client, SimplePriceReq};
 
-pub fn main() {
-    smol::block_on(async {
-        let http = isahc::HttpClient::new().unwrap();
+#[tokio::main]
+pub async fn main() {
+    tokio::spawn(async {
+        let http = reqwest::Client::new();
 
         let client = Client::new(http);
 
@@ -13,5 +14,5 @@ pub fn main() {
             .include_last_updated_at();
 
         println!("{:#?}", client.simple_price(req).await);
-    })
+    });
 }

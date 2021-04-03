@@ -14,11 +14,9 @@ const_format = "0.2"
 thiserror = "1.0"
 serde_json = "1.0"
 serde = { version = "1.0", features = ["derive"]}
-isahc = { version = "0.9", default-features = false, features = ["http2", "text-decoding"]}
 futures-lite = "1.11"
 rust_decimal = "1.8"
 derive_setters = "0.1"
 fomat-macros = "0.3"
-
-[dev-dependencies]
-smol = "1.2"
+reqwest = { version = "0.11.2", features = ["json"] }
+tokio = { version = "1", features = ["full"] }

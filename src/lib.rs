@@ -13,7 +13,6 @@ mod utils;
 
 use const_format::concatcp;
 
-use isahc::HttpClient;
 
 pub use crate::coin_info::*;
 pub use crate::simple_price::*;
@@ -21,11 +20,11 @@ pub use crate::simple_price::*;
 const API: &str = "https://api.coingecko.com/api/v3/";
 
 pub struct Client {
-    http: HttpClient,
+    http: reqwest::Client,
 }
 
 impl Client {
-    pub fn new(http: HttpClient) -> Self {
+    pub fn new(http: reqwest::Client) -> Self {
         Self { http }
     }
 
@@ -65,7 +64,7 @@ impl Client {
 #[derive(Error, Debug)]
 pub enum Error {
     #[error("HTTP error")]
-    Http(#[from] isahc::Error),
+    Http(#[from] reqwest::Error),
     #[error("IO error")]
     Io(#[from] std::io::Error),
     #[error("Deserialization error")]
