@@ -8,11 +8,12 @@ extern crate serde;
 extern crate thiserror;
 
 mod coin_info;
+mod market;
 mod simple_price;
 mod utils;
 
 use const_format::concatcp;
-
+use market::MarketRequest;
 
 pub use crate::coin_info::*;
 pub use crate::simple_price::*;
@@ -58,6 +59,13 @@ impl Client {
         const COINS_LIST: &str = concatcp!(crate::API, "/coins/list");
 
         utils::get_json(&self.http, COINS_LIST).await
+    }
+    /// Fetch market data
+    pub async fn markets(&self, req: MarketRequest) -> Result<Vec<Coin>, Error> {
+        const MARKETS: &str = concatcp!(crate::API, "/coins/markets");
+        let uri = fomat!((MARKETS) "?" (req.query()));
+
+        utils::get_json(&self.http, &uri).await
     }
 }
 
