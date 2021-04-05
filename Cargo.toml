@@ -1,11 +1,12 @@
 [package]
-name = "coingecko"
+name = "coingecko-tokio"
 version = "0.1.0"
-description = "CoinGecko v3 API"
-repository = "https://github.com/mmstick/coingecko-rs"
+description = "CoinGecko v3 API with a tokio runtime, forked from coingecko-rs due to its use of different APIs"
+repository = "https://github.com/AwesomeIbex/coingecko-tokio-rs"
 license = "MIT"
 keywords = [ "cryptocurrency" ]
-authors = ["Michael Aaron Murphy <mmstick@pm.me>"]
+authors = ["Donovan Dall <awesomealpineibex@gmail.com>", "Michael Aaron Murphy <mmstick@pm.me>"]
+
 edition = "2018"
 readme = "README.md"
 
