@@ -1,4 +1,4 @@
-use coingecko::{Client, SimplePriceReq};
+use coingecko_tokio::{Client, SimplePriceReq};
 
 #[tokio::main]
 pub async fn main() {

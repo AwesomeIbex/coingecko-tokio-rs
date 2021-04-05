@@ -84,8 +84,8 @@ impl Display for PriceChangePercentage {
 
 impl MarketRequest {
     pub fn new(
-        ids: Option<String>,
         vs_currency: String,
+        ids: Option<String>,
         category: Option<String>,
         order: Option<Order>,
         per_page: Option<u32>,

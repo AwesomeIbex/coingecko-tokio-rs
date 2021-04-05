@@ -13,9 +13,9 @@ mod simple_price;
 mod utils;
 
 use const_format::concatcp;
-use market::MarketRequest;
 
 pub use crate::coin_info::*;
+pub use crate::market::*;
 pub use crate::simple_price::*;
 
 const API: &str = "https://api.coingecko.com/api/v3/";
