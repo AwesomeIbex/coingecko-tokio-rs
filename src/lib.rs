@@ -61,7 +61,7 @@ impl Client {
         utils::get_json(&self.http, COINS_LIST).await
     }
     /// Fetch market data
-    pub async fn markets(&self, req: MarketRequest) -> Result<Vec<Coin>, Error> {
+    pub async fn markets(&self, req: MarketRequest) -> Result<Vec<Market>, Error> {
         const MARKETS: &str = concatcp!(crate::API, "/coins/markets");
         let uri = fomat!((MARKETS) "?" (req.query()));
 
