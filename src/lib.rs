@@ -8,12 +8,12 @@ extern crate serde;
 extern crate thiserror;
 
 mod coin_info;
+mod market;
 mod simple_price;
 mod utils;
 
 use const_format::concatcp;
-
-use isahc::HttpClient;
+use market::MarketRequest;
 
 pub use crate::coin_info::*;
 pub use crate::simple_price::*;
@@ -21,11 +21,11 @@ pub use crate::simple_price::*;
 const API: &str = "https://api.coingecko.com/api/v3/";
 
 pub struct Client {
-    http: HttpClient,
+    http: reqwest::Client,
 }
 
 impl Client {
-    pub fn new(http: HttpClient) -> Self {
+    pub fn new(http: reqwest::Client) -> Self {
         Self { http }
     }
 
@@ -60,12 +60,19 @@ impl Client {
 
         utils::get_json(&self.http, COINS_LIST).await
     }
+    /// Fetch market data
+    pub async fn markets(&self, req: MarketRequest) -> Result<Vec<Coin>, Error> {
+        const MARKETS: &str = concatcp!(crate::API, "/coins/markets");
+        let uri = fomat!((MARKETS) "?" (req.query()));
+
+        utils::get_json(&self.http, &uri).await
+    }
 }
 
 #[derive(Error, Debug)]
 pub enum Error {
     #[error("HTTP error")]
-    Http(#[from] isahc::Error),
+    Http(#[from] reqwest::Error),
     #[error("IO error")]
     Io(#[from] std::io::Error),
     #[error("Deserialization error")]
