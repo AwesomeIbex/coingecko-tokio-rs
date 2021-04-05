@@ -180,6 +180,8 @@ impl MarketRequest {
             }
             if let Some(page) = self.page {
                 "&page=" (page)
+            } else {
+                "&page=1"
             }
             if let Some(sparkline) = self.sparkline {
                 "&sparkline=" (sparkline)
