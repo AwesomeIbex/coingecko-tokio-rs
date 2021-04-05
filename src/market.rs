@@ -16,7 +16,7 @@ pub struct Market {
     #[serde(rename = "fully_diluted_valuation")]
     pub fully_diluted_valuation: Option<i64>,
     #[serde(rename = "total_volume")]
-    pub total_volume: i64,
+    pub total_volume: f64,
     #[serde(rename = "high_24h")]
     pub high24_h: f64,
     #[serde(rename = "low_24h")]

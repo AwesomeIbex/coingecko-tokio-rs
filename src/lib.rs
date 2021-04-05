@@ -71,9 +71,9 @@ impl Client {
 
 #[derive(Error, Debug)]
 pub enum Error {
-    #[error("HTTP error")]
+    #[error("HTTP error {0}")]
     Http(#[from] reqwest::Error),
-    #[error("IO error")]
+    #[error("IO error {0}")]
     Io(#[from] std::io::Error),
     #[error("Deserialization error")]
     Deserialization(#[from] serde_json::Error),
