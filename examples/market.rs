@@ -15,7 +15,6 @@ pub async fn main() {
             None,
             None,
             None,
-            None,
         );
 
         println!("{:#?}", client.markets(req).await);

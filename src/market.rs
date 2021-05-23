@@ -58,34 +58,24 @@ pub struct Roi {
     pub percentage: f64,
 }
 
-#[derive(Default, Setters, Clone)]
+#[derive(Default, Clone)]
 pub struct MarketRequest {
     /// ids of currency pairs, comma-separated
-    #[setters(skip)]
     pub vs_currency: String,
 
     /// ids of coins, comma-separated
-    #[setters(skip)]
     pub ids: Option<String>,
 
     /// ids of coins, comma-separated
-    #[setters(skip)]
     pub category: Option<String>, //TODO make enum if i care
 
-    #[setters(bool)]
     pub order: Option<Order>,
 
     // 1..250 max
-    #[setters(bool)]
     pub per_page: Option<u32>,
 
-    #[setters(u32)]
     pub page: Option<u32>,
 
-    #[setters(bool)]
-    pub sparkline: Option<bool>,
-
-    #[setters(bool)]
     pub price_change_percentage: Option<PriceChangePercentage>,
 }
 
@@ -148,17 +138,15 @@ impl MarketRequest {
         order: Option<Order>,
         per_page: Option<u32>,
         page: Option<u32>,
-        sparkline: Option<bool>,
         price_change_percentage: Option<PriceChangePercentage>,
     ) -> Self {
         MarketRequest {
-            ids,
             vs_currency,
+            ids,
             category,
             order,
             per_page,
             page,
-            sparkline,
             price_change_percentage,
         }
     }
@@ -182,9 +170,6 @@ impl MarketRequest {
                 "&page=" (page)
             } else {
                 "&page=1"
-            }
-            if let Some(sparkline) = self.sparkline {
-                "&sparkline=" (sparkline)
             }
             if let Some(price_change_percentage) = &self.price_change_percentage {
                 "&price_change_percentage=" (price_change_percentage)
