@@ -18,17 +18,17 @@ pub struct Market {
     #[serde(rename = "total_volume")]
     pub total_volume: f64,
     #[serde(rename = "high_24h")]
-    pub high24_h: f64,
+    pub high24_h: Option<f64>,
     #[serde(rename = "low_24h")]
-    pub low24_h: f64,
+    pub low24_h: Option<f64>,
     #[serde(rename = "price_change_24h")]
-    pub price_change24_h: f64,
+    pub price_change24_h: Option<f64>,
     #[serde(rename = "price_change_percentage_24h")]
-    pub price_change_percentage24_h: f64,
+    pub price_change_percentage24_h: Option<f64>,
     #[serde(rename = "market_cap_change_24h")]
-    pub market_cap_change24_h: f64,
+    pub market_cap_change24_h: Option<f64>,
     #[serde(rename = "market_cap_change_percentage_24h")]
-    pub market_cap_change_percentage24_h: f64,
+    pub market_cap_change_percentage24_h: Option<f64>,
     #[serde(rename = "circulating_supply")]
     pub circulating_supply: f64,
     #[serde(rename = "total_supply")]
